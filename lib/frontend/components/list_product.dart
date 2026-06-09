@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:trabalho_final/backend/interfaces/product_repository_interface.dart';
-import 'package:trabalho_final/backend/repositories/product_in_memory_repository.dart';
-import 'package:trabalho_final/frontend/layout/build_header.dart';
-import 'package:trabalho_final/frontend/pages/create_product.dart';
+import 'package:trabalho_final/frontend/pages/confirm_delete_product.dart';
+
 import 'package:trabalho_final/frontend/pages/edit_product.dart';
 
 class ListProduct extends StatefulWidget {
@@ -29,15 +28,13 @@ class _ListProductState extends State<ListProduct> {
               children: [
                 Text("ID: ${products[index].id}"),
                 Text("Nome: ${products[index].name}"),
-                Text(
-                  "Preço: R\$ ${products[index].price.toStringAsFixed(2)}",
-                ),
+                Text("Preço: R\$ ${products[index].price.toStringAsFixed(2)}"),
                 Text("Quantidade: ${products[index].quantity}"),
+                Text("Categoria: ${products[index].category}"),
               ],
             ),
             trailing: Row(
-              mainAxisSize:
-                  MainAxisSize.min,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 IconButton(
                   icon: const Icon(Icons.edit, color: Colors.blue),
@@ -58,9 +55,17 @@ class _ListProductState extends State<ListProduct> {
                 IconButton(
                   icon: const Icon(Icons.delete, color: Colors.red),
                   onPressed: () {
-                    setState(() {
-                      widget.productRepository.delete(products[index].id);
-                    });
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ConfirmDeleteProduct(
+                          onConfirm: () {
+                            setState(() {});
+                          },
+                          product: products[index],
+                        ),
+                      ),
+                    );
                   },
                 ),
               ],
