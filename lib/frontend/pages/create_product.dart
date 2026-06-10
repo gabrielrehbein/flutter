@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:trabalho_final/backend/dtos/create_product_dto.dart';
 import 'package:trabalho_final/backend/interfaces/product_repository_interface.dart';
 import 'package:trabalho_final/backend/repositories/product_in_memory_repository.dart';
-import 'package:trabalho_final/frontend/layout/build_header.dart';
+import 'package:trabalho_final/frontend/layout/header.dart';
 
 class CreateProduct extends StatefulWidget {
   final VoidCallback onProductCreated;
@@ -37,7 +37,7 @@ class _CreateProductState extends State<CreateProduct> {
     final ProductRepositoryInterface productRepository =
         ProductInMemoryRepository();
     return Scaffold(
-      appBar: buildHeader(),
+      appBar: Header(title: "Criar Produto"),
       body: Form(
         key: formKey,
         child: Column(

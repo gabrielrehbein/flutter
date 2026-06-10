@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trabalho_final/backend/repositories/product_in_memory_repository.dart';
-import 'package:trabalho_final/frontend/layout/build_header.dart';
+import 'package:trabalho_final/frontend/layout/header.dart';
 import 'package:trabalho_final/types/product_type.dart';
 
 class ConfirmDeleteProduct extends StatelessWidget {
@@ -16,7 +16,7 @@ class ConfirmDeleteProduct extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildHeader(),
+      appBar: Header(title: "Deletar Produto"),
       body: Card(
         child: Column(
           children: [
