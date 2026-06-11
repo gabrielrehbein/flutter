@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:trabalho_final/frontend/pages/login_page.dart';
+import 'package:trabalho_final/frontend/pages/user/create_user_page.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -12,6 +13,15 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(title),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CreateUserPage()),
+              );
+            },
+            child: Text("Criar usuário"),
+          ),
           ElevatedButton(
             onPressed: () {
               Navigator.pushReplacement(

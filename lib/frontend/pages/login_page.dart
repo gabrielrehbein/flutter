@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:trabalho_final/backend/actions/login_action.dart';
+import 'package:trabalho_final/backend/repositories/user_in_memory_repository.dart';
 import 'package:trabalho_final/frontend/pages/my_products_page.dart';
 
 class LoginPage extends StatefulWidget {
@@ -9,6 +11,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final LoginAction loginAction = LoginAction(
+    userRepository: UserInMemoryRepository(),
+  );
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
@@ -33,8 +38,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      if (_email.text == "gaba@gaba.com" &&
-                          _password.text == "123") {
+                      if (loginAction.execute(_email.text, _password.text)) {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
