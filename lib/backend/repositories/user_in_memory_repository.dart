@@ -14,6 +14,7 @@ class UserInMemoryRepository implements UserRepositoryInterface {
     User user = User(
       email: createUserDTO.email,
       password: createUserDTO.password,
+      isAdmin: createUserDTO.isAdmin,
     );
     UserDataInMemory.users.add(user);
     return user;

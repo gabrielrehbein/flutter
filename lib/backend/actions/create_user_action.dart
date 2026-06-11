@@ -8,7 +8,7 @@ class CreateUserAction {
 
   CreateUserAction({required this.userRepository});
 
-  User execute(String email, String password) {
+  User execute(String email, String password, bool isAdmin) {
     String hashedPassword = AuthService.hashPassword(password);
 
     if (userRepository.getUserByEmail(email) != null) {
@@ -16,9 +16,8 @@ class CreateUserAction {
     }
 
     User user = userRepository.create(
-      CreateUserDto(email: email, password: hashedPassword),
+      CreateUserDto(email: email, password: hashedPassword, isAdmin: isAdmin),
     );
-    print(user.toString());
     return user;
   }
 }

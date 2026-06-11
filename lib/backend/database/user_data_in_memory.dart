@@ -3,6 +3,6 @@ import 'package:trabalho_final/backend/services/auth_service.dart';
 
 class UserDataInMemory {
   static final List<User> users = [
-    User(email: "a", password: AuthService.hashPassword("a")),
+    User(email: "a", password: AuthService.hashPassword("a"), isAdmin: true),
   ];
 }

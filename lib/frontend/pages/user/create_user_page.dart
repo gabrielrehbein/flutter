@@ -14,6 +14,8 @@ class _CreateUserPageState extends State<CreateUserPage> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
+  bool _isAdmin = false;
+
   final createUserAction = CreateUserAction(
     userRepository: UserInMemoryRepository(),
   );
@@ -35,10 +37,23 @@ class _CreateUserPageState extends State<CreateUserPage> {
                 controller: _password,
                 decoration: const InputDecoration(labelText: "Senha"),
               ),
+              CheckboxListTile(
+                value: _isAdmin,
+                onChanged: (value) {
+                  setState(() {
+                    _isAdmin = value ?? false;
+                  });
+                },
+                title: Text("É Admistrador?"),
+              ),
 
               ElevatedButton(
                 onPressed: () {
-                  createUserAction.execute(_email.text, _password.text);
+                  createUserAction.execute(
+                    _email.text,
+                    _password.text,
+                    _isAdmin,
+                  );
                   Navigator.pop(context);
                 },
                 child: Text("Cadastrar"),

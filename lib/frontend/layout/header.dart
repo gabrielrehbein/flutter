@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:trabalho_final/backend/repositories/user_in_memory_repository.dart';
 import 'package:trabalho_final/frontend/pages/login_page.dart';
 import 'package:trabalho_final/frontend/pages/user/create_user_page.dart';
+import 'package:trabalho_final/frontend/pages/user/list_USER_page.dart';
 
 class Header extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -21,6 +23,18 @@ class Header extends StatelessWidget implements PreferredSizeWidget {
               );
             },
             child: Text("Criar usuário"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      ListUserPage(userRepository: UserInMemoryRepository()),
+                ),
+              );
+            },
+            child: Text("Usuários"),
           ),
           ElevatedButton(
             onPressed: () {
